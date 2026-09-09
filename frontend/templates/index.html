@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mercado VIVA | Inventario en tienda</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <div class="topbar">
+    <div class="topbar__inner">
+      <span>Servicio al cliente: </span>
+      <span class="topbar__sep">|</span>
+      <div class="topbar__spacer"></div>
+      <span>Mis tiendas: Laureles · Envigado · Sabaneta</span>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="header__inner">
+      <div class="brand">
+        <span class="brand__mark">VIVA</span>
+        <span class="brand__name">Mercado&nbsp;VIVA</span>
+      </div>
+
+      <div class="search">
+        <input id="buscador" type="text" placeholder="Busca leche, arroz…" autocomplete="off">
+        <button id="btn-buscar" aria-label="Buscar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
+            <circle cx="11" cy="11" r="7"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="header__actions">
+        <label class="modo-switch">
+          <input type="checkbox" id="toggle-modo">
+          <span class="modo-switch__track"><span class="modo-switch__thumb"></span></span>
+          <span class="modo-switch__label" id="modo-label">Modo cliente</span>
+        </label>
+      </div>
+    </div>
+  </header>
+
+  <nav class="categorias">
+    <div class="categorias__inner" id="lista-categorias">
+      <button class="categoria-btn categoria-btn--activa" data-categoria="">Todas las categorías</button>
+    </div>
+  </nav>
+
+  <main class="contenido">
+    <div class="contenido__barra">
+      <p id="contador-resultados">Cargando productos…</p>
+      <div class="filtro-estado">
+        <label for="filtro-estado">Estado:</label>
+        <select id="filtro-estado">
+          <option value="">Todos</option>
+          <option value="disponible">Disponible</option>
+          <option value="stock_bajo">Stock bajo</option>
+          <option value="agotado">Agotado</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="mensaje-error" class="mensaje-error" hidden></div>
+    <div id="mensaje-vacio" class="mensaje-vacio" hidden>
+      <strong>No se encontraron productos.</strong>
+      <span>Intenta con otro nombre o revisa la categoría seleccionada.</span>
+    </div>
+
+    <div id="grid-productos" class="grid-productos"></div>
+  </main>
+
+  <footer class="footer">
+    <p>Mercado VIVA </p>
+  </footer>
+
+  <template id="plantilla-producto">
+    <article class="tarjeta">
+      <div class="tarjeta__badge"></div>
+      <div class="tarjeta__imagen"><span></span></div>
+      <p class="tarjeta__categoria"></p>
+      <h3 class="tarjeta__nombre"></h3>
+      <p class="tarjeta__tienda"></p>
+      <p class="tarjeta__precio"></p>
+      <p class="tarjeta__stock"></p>
+
+      <div class="tarjeta__bodega">
+        <label>Actualizar cantidad real</label>
+        <div class="tarjeta__bodega-fila">
+          <input type="number" min="0" class="input-cantidad" />
+          <button class="btn-guardar">Guardar</button>
+        </div>
+        <p class="tarjeta__actualizado"></p>
+        <p class="tarjeta__feedback"></p>
+      </div>
+    </article>
+  </template>
+
+  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
